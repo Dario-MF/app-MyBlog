@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BtnModal from '../atoms/BtnModal';
+import LoginModal from '../organism/LoginModal';
 
 const NavBarPpal = () => {
+    const handleClick = () => {
+        console.log('click')
+    }
     return (
         <div className='navbar_ppal'>
             <Link to='/' >
@@ -10,13 +15,14 @@ const NavBarPpal = () => {
             <div className="navbar_auth">
                 <ul className="navbar_list">
                     <li className="navbar_item">
-                        <button className='btn_modal' onClick={() => console.log('click login')}>Login</button>
+                        <BtnModal text='Login' handleClick={handleClick} />
+                        <LoginModal />
                     </li>
                     <li className="navbar_item">
-                        <button className='btn_modal'>Register</button>
+                        <BtnModal text='Signup' handleClick={handleClick} />
                     </li>
                     <li className="navbar_item">
-                        <button className='btn_modal'>Logout</button>
+                        <BtnModal text='Logout' handleClick={handleClick} />
                     </li>
                 </ul>
                 <div className="navbar_user_img">
