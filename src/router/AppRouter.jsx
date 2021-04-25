@@ -2,7 +2,8 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
 } from "react-router-dom";
 import NavBarPpal from '../components/templates/NavBarPpal';
 import HomeScreen from '../components/pages/HomeScreen';
@@ -20,6 +21,8 @@ const AppRouter = () => {
                     <Route exact path='/posts' component={PostScreen} />
                     <Route exact path='/search&:query' component={SearchScreen} />
                     <Route exact path='/user/:idUser' component={UserScreen} />
+                    {/*  Note: 404 */}
+                    <Redirect to='/' />
                 </Switch>
             </div>
         </Router>
