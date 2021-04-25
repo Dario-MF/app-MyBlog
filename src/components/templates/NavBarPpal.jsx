@@ -1,12 +1,26 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { uiOpenLoginModal, uiOpenRegisterModal } from '../../actions/ui';
 import BtnModal from '../atoms/BtnModal';
 import LoginModal from '../organism/LoginModal';
+import RegisterModal from '../organism/RegisterModal';
 
 const NavBarPpal = () => {
+    const dispatch = useDispatch();
+
+    const openLoginModal = () => {
+        dispatch(uiOpenLoginModal());
+    };
+
+    const openRegisterModal = () => {
+        dispatch(uiOpenRegisterModal());
+    };
+
     const handleClick = () => {
         console.log('click')
-    }
+    };
+
     return (
         <div className='navbar_ppal'>
             <Link to='/' >
@@ -15,11 +29,12 @@ const NavBarPpal = () => {
             <div className="navbar_auth">
                 <ul className="navbar_list">
                     <li className="navbar_item">
-                        <BtnModal text='Login' handleClick={handleClick} />
+                        <BtnModal text='Login' handleClick={openLoginModal} />
                         <LoginModal />
                     </li>
                     <li className="navbar_item">
-                        <BtnModal text='Signup' handleClick={handleClick} />
+                        <BtnModal text='Signup' handleClick={openRegisterModal} />
+                        <RegisterModal />
                     </li>
                     <li className="navbar_item">
                         <BtnModal text='Logout' handleClick={handleClick} />
