@@ -1,16 +1,23 @@
 import React from 'react';
 
 
+import './styles/main.scss';
+import AppRouter from './router/AppRouter';
+
+
+
+// midlewares: Axios, localeStorage, Redux
 
 
 
 const AppMyBlog = () => {
 
     return (
-        <div>
-            <h1>App MyBlog</h1>
-        </div>
+        <>
+            <AppRouter />
+        </>
     );
 };
+
 
 export default AppMyBlog;

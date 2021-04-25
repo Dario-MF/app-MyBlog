@@ -1,0 +1,37 @@
+/*Variables*/
+
+/* z-index */
+$z-back    : -10;
+$z-normal  : 1;
+$z-tooltip : 10;
+$z-fixed   : 1500;
+$z-modal   : 1000;
+
+/* fuentes */
+$font-family: sans-serif;
+$font-size-big: 2rem;
+$font-size-medium: 1.3rem;
+$font-size: 16px;
+
+/* Color */
+$color-important : #d83033;
+$color-urgent : #e2a026;
+$color-no-urgent:#d3df38;
+$color-third : #53be22;
+$color-fourth : #0d203d;
+$color-accent : #1b7885;
+$color-border : #dceefc;
+$color-light : #F6F6F6;
+$color-text : #323236;
+$color-text-light : #e1e2e4;
+$color-body-bg : #FCFCFE;
+
+$max-width : 1200px;
+
+/* Mq break */
+$breakpoints: (
+    s:480px,
+    m:768px,
+    l:1024px,
+    xl:1200px
+)

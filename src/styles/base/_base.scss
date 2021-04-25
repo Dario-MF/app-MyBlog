@@ -1,0 +1,26 @@
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin : 0;
+  font-family: $body-font;
+  color: $color-text;
+  overflow-x: hidden;
+  background: #01073a;  
+  background: -webkit-linear-gradient(to left, #004e92, #030a44);  
+  background: linear-gradient(to left, #004e92, #030a44);
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a{
+  color: $color-text;
+  text-decoration: none;
+}
