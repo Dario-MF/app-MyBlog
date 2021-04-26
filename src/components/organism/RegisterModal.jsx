@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { uiCloseRegisterModal } from '../../actions/ui';
-import LoginForm from '../molecules/LoginForm';
+import { uiCloseRegisterModal, uiOpenLoginModal } from '../../actions/ui';
+import SignupForm from '../molecules/SignupForm';
 
 const customStyles = {
     content: {
@@ -22,8 +22,14 @@ const RegisterModal = () => {
     const { modalRegisterOpen } = useSelector(state => state.ui);
 
     const dispatch = useDispatch();
+
     const modalClose = () => {
         dispatch(uiCloseRegisterModal());
+    };
+
+    const changeModal = () => {
+        dispatch(uiCloseRegisterModal());
+        dispatch(uiOpenLoginModal());
     };
 
     return (
@@ -35,10 +41,12 @@ const RegisterModal = () => {
                 overlayClassName='modal-fondo'
             >
                 <div className="modal">
-                    <div class="title login">
-                        <h3>Register</h3>
+                    <div className="title-login">
+                        <h3>Signup</h3>
+                        <hr/>
+                        <p className='text_login'>Create your account it´s free.</p>
                     </div>
-                    <LoginForm />
+                    <SignupForm changeModal={changeModal}/>
                 </div>
             </Modal>
         </div>

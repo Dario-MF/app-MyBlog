@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { uiCloseLoginModal } from '../../actions/ui';
+import { uiCloseLoginModal, uiOpenRegisterModal } from '../../actions/ui';
 import LoginForm from '../molecules/LoginForm';
 
 const customStyles = {
@@ -23,8 +23,13 @@ const LoginModal = () => {
 
     const dispatch = useDispatch();
     const modalClose = () => {
-        dispatch(uiCloseLoginModal())
-    }
+        dispatch(uiCloseLoginModal());
+    };
+
+    const changeModal = () => {
+        dispatch(uiCloseLoginModal());
+        dispatch(uiOpenRegisterModal());
+    };
 
     return (
         <div>
@@ -35,10 +40,11 @@ const LoginModal = () => {
                 overlayClassName='modal-fondo'
             >
                 <div className="modal">
-                    <div class="title login">
+                    <div className="title login">
                         <h3>Login</h3>
+                        <hr/>
                     </div>
-                    <LoginForm />
+                    <LoginForm changeModal={changeModal}/>
                 </div>
             </Modal>
         </div>
