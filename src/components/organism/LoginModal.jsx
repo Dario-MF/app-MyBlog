@@ -40,7 +40,7 @@ const LoginModal = () => {
                 overlayClassName='modal-fondo'
             >
                 <div className="modal">
-                    <div className="title login">
+                    <div className="title-login">
                         <h3>Login</h3>
                         <hr/>
                     </div>

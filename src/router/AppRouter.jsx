@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Redirect
 } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import NavBarPpal from '../components/templates/NavBarPpal';
 import HomeScreen from '../components/pages/HomeScreen';
 import PostScreen from '../components/pages/PostScreen';
 import UserScreen from '../components/pages/UserScreen';
 import SearchScreen from '../components/pages/SearchScreen';
+import { startChecking } from '../actions/auth';
 
 const AppRouter = () => {
+
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch( startChecking() );
+    }, [dispatch]);
+
     return (
         <Router>
             <NavBarPpal />

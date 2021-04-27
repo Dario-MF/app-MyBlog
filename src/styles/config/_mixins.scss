@@ -42,7 +42,7 @@
 @mixin profile-photo {
   @include round;
   flex       : none;
-  height     : 2rem;
-  width      : 2rem;
+  height     : 3rem;
+  width      : 3rem;
   object-fit : cover;
 }

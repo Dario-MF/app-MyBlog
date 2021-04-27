@@ -46,7 +46,7 @@ const RegisterModal = () => {
                         <hr/>
                         <p className='text_login'>Create your account it´s free.</p>
                     </div>
-                    <SignupForm changeModal={changeModal}/>
+                    <SignupForm changeModal={changeModal} modalClose={modalClose}/>
                 </div>
             </Modal>
         </div>

@@ -1,15 +1,21 @@
 import React, { useRef } from 'react';
 import { useForm } from "react-hook-form";
+import { useDispatch } from 'react-redux';
+//import Swal from 'sweetalert2';
+import { startRegister } from '../../actions/auth';
+//import { useAxiosPost } from '../../hooks/useAxios';
 
-const SignupForm = ({ changeModal }) => {
+
+const SignupForm = ({ changeModal, modalClose }) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
+    
     const password = useRef({});
     password.current = watch("password", "");
+
+    const dispatch = useDispatch();
     
-    const onSubmit = (data) => {
-        console.log(data)
-        console.log(password.current)
+    const onSubmit = (data) => {    
+        dispatch(startRegister(data));
     };
 
     return (
@@ -21,33 +27,44 @@ const SignupForm = ({ changeModal }) => {
                             type="text"
                             placeholder="First Name"
                             {...register("name", {
-                                required: true, 
-                                maxLength: 80
+                                required: 'Nombre es requerido.', 
+                                maxLength: 80,
+                                minLength: {
+                                    value: 2,
+                                    message: "Nombre necesita min 8 letras."
+                                }
                             })}
                         />
-                        {errors.name && <p className="error">El campo nombre es incorrecto</p>}
+                        {errors.name && <p className="error">{errors.name.message}</p>}
                     </div>
                     <div className="signup-field">
                         <input
                             type="text"
                             placeholder="Last Name"
                             {...register("surname", {
-                                required: true, 
-                                maxLength: 100
+                                required: 'Apellido es requerido.', 
+                                maxLength: 100,
+                                minLength: {
+                                    value: 2,
+                                    message: "Apellido necesita min 8 letras."
+                                }
                             })}
                         />
-                        {errors.surname && <p className="error">El campo apellido es incorrecto</p>}
+                        {errors.surname && <p className="error">{errors.surname.message}</p>}
                     </div>
                     <div className="signup-field">
                         <input
                             type="text"
                             placeholder="Email"
                             {...register("email", {
-                                required: true, 
-                                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+                                required: 'Email es requerido', 
+                                pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,// validation email
+                                    message: "Introduzca email valido.",
+                                },
                             })}
                         />
-                        {errors.email && <p className="error">El campo email es incorrecto</p>}
+                        {errors.email && <p className="error">{errors.email.message}</p>}
                     </div>
                     <div className="signup-field">
                         <input
@@ -55,10 +72,10 @@ const SignupForm = ({ changeModal }) => {
                             placeholder="Password"
                             
                             {...register('password', {
-                                required: 'El campo pasword es incorrecto',
-                                minLength: {
-                                  value: 8,
-                                  message: "Password necesita min 8 caracteres"
+                                required: 'Pasword es requerido',
+                                pattern: {
+                                  value: /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/,
+                                  message: "Password: min 8 caracteres, 1 numero"
                                 }
                             })} 
                         />
@@ -70,7 +87,7 @@ const SignupForm = ({ changeModal }) => {
                             placeholder="Confirm password" 
 
                             {...register('password_repeat', {
-                                required: 'El campo pasword es incorrecto',
+                                required: 'Pasword es requerido',
                                 validate: value =>
                                   value === password.current || "Paswords no son iguales"
                               })}

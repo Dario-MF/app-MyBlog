@@ -1,24 +1,25 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { userLogout } from '../../actions/auth';
 import { uiOpenLoginModal, uiOpenRegisterModal } from '../../actions/ui';
 import BtnModal from '../atoms/BtnModal';
 import LoginModal from '../organism/LoginModal';
 import RegisterModal from '../organism/RegisterModal';
 
 const NavBarPpal = () => {
+    let history = useHistory();
     const dispatch = useDispatch();
+    const { logged, user} = useSelector(state => state.auth);
 
     const openLoginModal = () => {
         dispatch(uiOpenLoginModal());
     };
-
     const openRegisterModal = () => {
         dispatch(uiOpenRegisterModal());
     };
-
     const handleClick = () => {
-        console.log('click')
+        dispatch(userLogout(history)); 
     };
 
     return (
@@ -26,24 +27,36 @@ const NavBarPpal = () => {
             <Link to='/' >
                 <p className='brand'>Logo</p>
             </Link>
-            <div className="navbar_auth">
-                <ul className="navbar_list">
-                    <li className="navbar_item">
-                        <BtnModal text='Login' handleClick={openLoginModal} />
-                        <LoginModal />
-                    </li>
-                    <li className="navbar_item">
-                        <BtnModal text='Signup' handleClick={openRegisterModal} />
-                        <RegisterModal />
-                    </li>
-                    <li className="navbar_item">
-                        <BtnModal text='Logout' handleClick={handleClick} />
-                    </li>
-                </ul>
-                <div className="navbar_user_img">
-                    <img src="#" className='user_img' alt="" />
-                </div>
-            </div>
+                { 
+                    (!logged) && 
+                        <div className="navbar_auth">
+                            <ul className="navbar_list">
+                                <li className="navbar_item">
+                                    <BtnModal text='Login' handleClick={openLoginModal} />
+                                    <LoginModal />
+                                </li>
+                                <li className="navbar_item">
+                                    <BtnModal text='Signup' handleClick={openRegisterModal} />
+                                    <RegisterModal />
+                                </li>
+                            </ul>
+                        </div>
+                }
+                {
+                    (logged) &&
+                        <div className="navbar_auth">
+                            <ul className="navbar_list">
+                                <li className="navbar_item">
+                                    <BtnModal text='Logout' handleClick={handleClick} />
+                                </li>
+                            </ul>
+                            <div className="navbar_user_img">
+                                <Link to={`/user/${user.uid}`} >
+                                    <img src={user.img_avatar} className='user_img' alt={user.name} />
+                                </Link>
+                            </div>
+                        </div>
+                }
         </div>
     );
 };
