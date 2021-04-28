@@ -1,0 +1,60 @@
+.modal-newpost {
+  padding: 1em 2em;
+}
+
+.new-post-form{
+    padding-top: 1em;
+
+    .field {
+        margin: 0 0 1em;
+        input {
+            height: 2.3em;
+            font-size: 15px;
+           
+        }
+    }
+    
+    .field-box {
+        display: flex;
+        align-items: center;
+        height: 2em;
+        width: 100%;
+        outline: none;
+        border-radius: 5px;
+        margin-bottom: 1em;
+        border: 1px solid rgb(197, 197, 197);
+        border-bottom-width: 2px;
+        font-size: 17px;
+    }
+
+    .input-file {
+        display: flex;
+        align-items: center;
+        background-color: $color-fourth;
+        color: $color-text-light;
+        cursor: pointer;
+        outline: 0 none;
+        padding-left: 15px; 
+        width: 30%;
+        height: 100%;
+        border: 0;
+        border-radius: 5px;
+        margin-right: 1em;
+        content: 'Imagen Post';
+        &:hover {
+            background:$color-accent;
+        }
+    } 
+    .text-input-file {
+        margin: 0;
+        color: #999;
+        transition: all 0.3s ease;
+    }
+}
+
+.btn-box {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1em;
+}

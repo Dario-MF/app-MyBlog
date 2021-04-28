@@ -6,12 +6,14 @@ import {
     Redirect
 } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import { startChecking } from '../actions/auth';
+
 import NavBarPpal from '../components/templates/NavBarPpal';
 import HomeScreen from '../components/pages/HomeScreen';
 import PostScreen from '../components/pages/PostScreen';
 import UserScreen from '../components/pages/UserScreen';
 import SearchScreen from '../components/pages/SearchScreen';
-import { startChecking } from '../actions/auth';
+import NewPostScreen from '../components/pages/NewPostScreen';
 
 const AppRouter = () => {
 
@@ -27,6 +29,7 @@ const AppRouter = () => {
                 <Switch>
                     <Route exact path='/' component={HomeScreen} />
                     <Route exact path='/posts' component={PostScreen} />
+                    <Route exact path='/newpost' component={NewPostScreen} />
                     <Route exact path='/search&:query' component={SearchScreen} />
                     <Route exact path='/user/:idUser' component={UserScreen} />
                     {/*  Note: 404 */}

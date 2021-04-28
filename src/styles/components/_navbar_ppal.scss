@@ -25,7 +25,8 @@
 .btn_modal {
     border: 0;
     height: 100%;
-    padding: 0 2.5em;
+    padding: 0 2em;
+    font-weight: bold;
     background-color: rgb(19, 18, 22);
     color: $color-text-light;
     &:hover{

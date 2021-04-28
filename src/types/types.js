@@ -4,6 +4,8 @@ export const types = {
     uiCloseModalRegister: '[ui] CLOSE_MODAL_REGISTER',
     uiOpenModalLogin: '[ui] OPEN_MODAL_LOGIN',
     uiCloseModalLogin: '[ui] CLOSE_MODAL_LOGIN',
+    uiOpenModalNewPost: '[ui] OPEN_MODAL_NEW_POST',
+    uiCloseModalNewPost: '[ui] CLOSE_MODAL_NEW_POST',
     //auth
     authChecking: '[auth] CHECKING_LOGIN_STATE',
     authCheckingFinish: '[auth] FINISH_CHECKING_LOGIN_STATE',

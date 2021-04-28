@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
-//import Swal from 'sweetalert2';
 import { startRegister } from '../../actions/auth';
-//import { useAxiosPost } from '../../hooks/useAxios';
+
 
 
 const SignupForm = ({ changeModal, modalClose }) => {
@@ -31,7 +30,7 @@ const SignupForm = ({ changeModal, modalClose }) => {
                                 maxLength: 80,
                                 minLength: {
                                     value: 2,
-                                    message: "Nombre necesita min 8 letras."
+                                    message: "Nombre necesita min 2 letras."
                                 }
                             })}
                         />

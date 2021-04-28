@@ -2,9 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { userLogout } from '../../actions/auth';
-import { uiOpenLoginModal, uiOpenRegisterModal } from '../../actions/ui';
+import { uiOpenLoginModal, uiOpenNewPostModal, uiOpenRegisterModal } from '../../actions/ui';
 import BtnModal from '../atoms/BtnModal';
 import LoginModal from '../organism/LoginModal';
+import NewPostModal from '../organism/NewPostModal';
 import RegisterModal from '../organism/RegisterModal';
 
 const NavBarPpal = () => {
@@ -17,6 +18,9 @@ const NavBarPpal = () => {
     };
     const openRegisterModal = () => {
         dispatch(uiOpenRegisterModal());
+    };
+    const openNewPostModal = () => {
+        dispatch(uiOpenNewPostModal());
     };
     const handleClick = () => {
         dispatch(userLogout(history)); 
@@ -46,6 +50,10 @@ const NavBarPpal = () => {
                     (logged) &&
                         <div className="navbar_auth">
                             <ul className="navbar_list">
+                                <li className="navbar_item">
+                                    <BtnModal text='New Post' handleClick={openNewPostModal} />
+                                    <NewPostModal />
+                                </li>
                                 <li className="navbar_item">
                                     <BtnModal text='Logout' handleClick={handleClick} />
                                 </li>
