@@ -16,7 +16,7 @@ const NewPostForm = () => {
         resolver: yupResolver(schemaPost),
     });
 
-    const imageName = watch("image", "") || '';
+    const imageName = watch("image", []);
 
     const parseEditorData = (content) => {
         setArticleData({
@@ -66,7 +66,7 @@ const NewPostForm = () => {
                 <div className='field-box'>
                     <label htmlFor='imageUrl' className="input-file">Image Post</label>
                     <p className="text-input-file">
-                        {(imageName) ? imageName[0].name : 'Choose your image...'}
+                        {(!imageName[0]) ? 'Choose your image...' : imageName[0].name }
                     </p>
                     <input
                         hidden
@@ -76,7 +76,7 @@ const NewPostForm = () => {
                     />
                 </div>
                 {errors.image && <p className="error">{errors.image.message}</p>}
-                <div>
+                <div className='box_editor'>
                     <Editor
                         outputFormat='html'
                         init={{

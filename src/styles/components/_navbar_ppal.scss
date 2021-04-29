@@ -6,7 +6,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 3em;
-    background-color: rgb(19, 18, 22);
+    background-color: $color-nav-bg;
+    border-bottom: 1px solid $color-nav-border;
     color: $color-text-light;
 }
 .brand{
@@ -23,14 +24,15 @@
     
 }
 .btn_modal {
+    cursor: pointer;
     border: 0;
     height: 100%;
     padding: 0 2em;
     font-weight: bold;
-    background-color: rgb(19, 18, 22);
+    background-color: $color-nav-bg;
     color: $color-text-light;
     &:hover{
-        background-color: rgb(20, 26, 77);
+        background-color: $color-navbtn-hover;
     }
 }
 .navbar_user_img {

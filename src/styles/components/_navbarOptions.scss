@@ -1,0 +1,54 @@
+
+
+.options_bar{
+    position: fixed;
+    z-index: 2;
+    min-height: 90vh;
+    width: 5vw;
+    background-color: $color-nav-bg;
+    border-right: 1px solid $color-nav-border;
+    transition: all 0.4s;
+    &:hover {
+        width: 15vw;
+    }
+}
+
+.options_list{
+    padding: .5em 0;
+    border-bottom: 1px solid $color-nav-border;
+}
+
+.options_item{
+    
+}
+
+.options_box_btn {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    &:hover {
+        background-color: $color-navbtn-hover;
+    }
+}
+
+.options_btn{
+    //reset
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    //styles
+    flex-basis: 5vw;
+    flex-shrink: 0;
+    cursor: pointer;
+    width: 5vw;
+    height: calc(5vw);
+}
+.text_btn {
+    color: $color-text-light;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    padding-left: 1em;  
+}

@@ -9,7 +9,8 @@ body {
   font-family: $body-font;
   color: $color-text;
   overflow-x: hidden;
-  background: #01073a;  
+  background: $color-body-bg;
+  color: $color-text-light;  
 }
 
 ul{

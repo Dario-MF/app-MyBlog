@@ -7,7 +7,7 @@
     align-items: center;
     padding: 0;
     position: relative;
-    background:rgb(20, 17, 26);
+    background:rgb(17, 20, 26);
 
     &::before {
         content: "";
@@ -20,7 +20,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        filter: brightness(30%);
+        filter: brightness(40%);
         opacity: .3;
         overflow: hidden;
     }
@@ -51,9 +51,9 @@
     border-radius: 5px;
     font-weight: bold;
     color: $color-text-light;
-    background:$color-fourth;
+    background:$color-btncall;
     transition: all 0.4s ease;
     &:hover {
-       background:$color-accent;
+       background: $color-btncall-hover;
     }
 }

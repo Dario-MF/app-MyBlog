@@ -1,37 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import HeaderLogin from '../organism/HeaderLogin';
+import HeaderLogout from '../organism/HeaderLogout';
+
 
 const HomeScreen = () => {
-
-
-    const loginClick = () => {
-        
-    }
-    const signupClick = () => {
-
-    }
-
+    const { logged } = useSelector(state => state.auth);
 
     return (
         <div className='homeScreen'>
-            <div className="home_header">
-                <div className="box_header">
-                    <h1 className="header_title">
-                        Bienvenido a MyBlog! <br/>
-                        Registrate y crea con la comunidad <br/>
-                        Aprende compartiendo...
-                    </h1>
-                    <button 
-                        className='btn_call'
-                        onClick={loginClick}
-                    >Login
-                    </button>
-                    <button 
-                        className='btn_call'
-                        onClick={signupClick}
-                    >Signup
-                    </button>
-                </div>  
-            </div>
+            {
+                !logged ?<HeaderLogout /> :<HeaderLogin />
+            } 
             <div className="home_body">
                 <h2 className="body_title">
                     Post de la comunidad

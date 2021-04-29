@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import { capitalize } from '../helpers/capitalize';
 import { fetchNotToken, fetchWithToken } from '../helpers/fetch';
 import { types } from '../types/types';
 import { uiCloseLoginModal, uiCloseRegisterModal } from './ui';
@@ -25,7 +26,7 @@ export const startRegister = (user) => {
             }));
             Swal.fire(
                 'Bienvenido!',
-                `${name}, ya formas parte de MyBlog!`,
+                `${capitalize(`${name} ${surname}`)}, ya formas parte de MyBlog!`,
                 'success'
             );
             dispatch( uiCloseRegisterModal() )
@@ -59,7 +60,7 @@ export const startLogin = (user) => {
             }));
             Swal.fire(
                 'Bienvenido!',
-                `${name} ${surname}`,
+                capitalize(`${name} ${surname}`),
                 'success'
             );
             dispatch( uiCloseLoginModal() );

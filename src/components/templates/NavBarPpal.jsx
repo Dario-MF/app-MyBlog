@@ -36,12 +36,10 @@ const NavBarPpal = () => {
                 <div className="navbar_auth">
                     <ul className="navbar_list">
                         <li className="navbar_item">
-                            <BtnModal text='Login' handleClick={openLoginModal} />
-                            <LoginModal />
+                            <BtnModal text='Login' handleClick={openLoginModal} />          
                         </li>
                         <li className="navbar_item">
-                            <BtnModal text='Signup' handleClick={openRegisterModal} />
-                            <RegisterModal />
+                            <BtnModal text='Signup' handleClick={openRegisterModal} />            
                         </li>
                     </ul>
                 </div>
@@ -51,8 +49,7 @@ const NavBarPpal = () => {
                 <div className="navbar_auth">
                     <ul className="navbar_list">
                         <li className="navbar_item">
-                            <BtnModal text='New Post' handleClick={openNewPostModal} />
-                            <NewPostModal />
+                            <BtnModal text='New Post' handleClick={openNewPostModal} />  
                         </li>
                         <li className="navbar_item">
                             <BtnModal text='Logout' handleClick={handleClick} />
@@ -65,6 +62,11 @@ const NavBarPpal = () => {
                     </div>
                 </div>
             }
+            <div className="modals" hidden>
+                <RegisterModal />
+                <LoginModal />
+                <NewPostModal />
+            </div>
         </div>
     );
 };

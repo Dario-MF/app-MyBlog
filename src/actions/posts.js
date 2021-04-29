@@ -20,7 +20,7 @@ export const createNewPost = (data, history) => {
         } else {
             Swal.fire(
                 'Oops...',
-                body.errors,
+                body.error.toLocaleString(),
                 'error'
             );
         };
