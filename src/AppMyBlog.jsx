@@ -6,9 +6,6 @@ import { store } from './store/store';
 import AppRouter from './router/AppRouter';
 
 
-// midlewares: Axios, localeStorage, Redux
-
-
 
 const AppMyBlog = () => {
 
