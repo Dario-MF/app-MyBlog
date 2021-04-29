@@ -9,9 +9,9 @@ import NewPostModal from '../organism/NewPostModal';
 import RegisterModal from '../organism/RegisterModal';
 
 const NavBarPpal = () => {
-    let history = useHistory();
+    const history = useHistory();
     const dispatch = useDispatch();
-    const { logged, user} = useSelector(state => state.auth);
+    const { logged, user } = useSelector(state => state.auth);
 
     const openLoginModal = () => {
         dispatch(uiOpenLoginModal());
@@ -23,7 +23,7 @@ const NavBarPpal = () => {
         dispatch(uiOpenNewPostModal());
     };
     const handleClick = () => {
-        dispatch(userLogout(history)); 
+        dispatch(userLogout(history));
     };
 
     return (
@@ -31,40 +31,40 @@ const NavBarPpal = () => {
             <Link to='/' >
                 <p className='brand'>Logo</p>
             </Link>
-                { 
-                    (!logged) && 
-                        <div className="navbar_auth">
-                            <ul className="navbar_list">
-                                <li className="navbar_item">
-                                    <BtnModal text='Login' handleClick={openLoginModal} />
-                                    <LoginModal />
-                                </li>
-                                <li className="navbar_item">
-                                    <BtnModal text='Signup' handleClick={openRegisterModal} />
-                                    <RegisterModal />
-                                </li>
-                            </ul>
-                        </div>
-                }
-                {
-                    (logged) &&
-                        <div className="navbar_auth">
-                            <ul className="navbar_list">
-                                <li className="navbar_item">
-                                    <BtnModal text='New Post' handleClick={openNewPostModal} />
-                                    <NewPostModal />
-                                </li>
-                                <li className="navbar_item">
-                                    <BtnModal text='Logout' handleClick={handleClick} />
-                                </li>
-                            </ul>
-                            <div className="navbar_user_img">
-                                <Link to={`/user/${user.uid}`} >
-                                    <img src={user.img_avatar} className='user_img' alt={user.name} />
-                                </Link>
-                            </div>
-                        </div>
-                }
+            {
+                (!logged) &&
+                <div className="navbar_auth">
+                    <ul className="navbar_list">
+                        <li className="navbar_item">
+                            <BtnModal text='Login' handleClick={openLoginModal} />
+                            <LoginModal />
+                        </li>
+                        <li className="navbar_item">
+                            <BtnModal text='Signup' handleClick={openRegisterModal} />
+                            <RegisterModal />
+                        </li>
+                    </ul>
+                </div>
+            }
+            {
+                (logged) &&
+                <div className="navbar_auth">
+                    <ul className="navbar_list">
+                        <li className="navbar_item">
+                            <BtnModal text='New Post' handleClick={openNewPostModal} />
+                            <NewPostModal />
+                        </li>
+                        <li className="navbar_item">
+                            <BtnModal text='Logout' handleClick={handleClick} />
+                        </li>
+                    </ul>
+                    <div className="navbar_user_img">
+                        <Link to={`/user/${user.uid}`} >
+                            <img src={user.img_avatar} className='user_img' alt={user.name} />
+                        </Link>
+                    </div>
+                </div>
+            }
         </div>
     );
 };

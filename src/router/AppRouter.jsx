@@ -13,13 +13,13 @@ import HomeScreen from '../components/pages/HomeScreen';
 import PostScreen from '../components/pages/PostScreen';
 import UserScreen from '../components/pages/UserScreen';
 import SearchScreen from '../components/pages/SearchScreen';
-import NewPostScreen from '../components/pages/NewPostScreen';
+
 
 const AppRouter = () => {
 
     const dispatch = useDispatch();
-    useEffect(()=> {
-        dispatch( startChecking() );
+    useEffect(() => {
+        dispatch(startChecking());
     }, [dispatch]);
 
     return (
@@ -28,8 +28,7 @@ const AppRouter = () => {
             <div className='screen'>
                 <Switch>
                     <Route exact path='/' component={HomeScreen} />
-                    <Route exact path='/posts' component={PostScreen} />
-                    <Route exact path='/newpost' component={NewPostScreen} />
+                    <Route exact path='/posts/:idPost' component={PostScreen} />
                     <Route exact path='/search&:query' component={SearchScreen} />
                     <Route exact path='/user/:idUser' component={UserScreen} />
                     {/*  Note: 404 */}
