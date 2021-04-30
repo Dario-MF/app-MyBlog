@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import HeaderLogin from '../organism/HeaderLogin';
 import HeaderLogout from '../organism/HeaderLogout';
+import PostsContainer from '../organism/PostsContainer';
 
 
 const HomeScreen = () => {
@@ -10,19 +11,12 @@ const HomeScreen = () => {
     return (
         <div className='homeScreen'>
             {
-                !logged ?<HeaderLogout /> :<HeaderLogin />
-            } 
+                !logged ? <HeaderLogout /> : <HeaderLogin />
+            }
             <div className="home_body">
-                <h2 className="body_title">
-                    Post de la comunidad
-                </h2>
-
-
-
+                <PostsContainer />
 
             </div>
-            
-
         </div>
     );
 };

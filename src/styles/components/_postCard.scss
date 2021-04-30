@@ -1,0 +1,93 @@
+.body_title{
+    font-size: 35px;
+    font-weight: bold;
+    margin: 1.5em 0;
+}
+
+.posts_cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.post_card {
+    min-width: 48%;
+    max-width: 300px;
+    max-height: 500px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 3em;
+    cursor: pointer;
+    display: inline-block;
+}
+ 
+.post_card img {
+    transition: all 0.15s linear;
+    position: relative;
+    width: 150%;
+    top: 0;
+    left: 0;
+    filter: brightness(60%);
+    
+}
+ 
+.post_card .card_title {
+    position: absolute;
+    top: 30%;
+    left: 3%;
+    font-size: 25px;
+    font-weight: bold;
+    color: #FFF;
+    padding: 15px 20px;
+    transition: all 0.15s linear;
+}
+ 
+.post_card .card_subtitle {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.8);
+    top: 50%;
+    left: 40px;
+    transition: all 0.15s linear;
+}
+ 
+.post_card .card_call {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0));
+    color: #FFF;
+    padding: 50px 0px 40px 0px;
+    transition: all 0.15s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+ 
+.post_card .card_call p {
+    color: rgba(255, 255, 255, 0.7);
+    padding-left: 25px;
+    padding-right: 25px;
+}
+ 
+.post_card:hover .card_title {
+    padding-left: 25px;
+}
+ 
+.post_card:hover .card_subtitle {
+    left: 60px;
+}
+ 
+.card_call_btn{
+    padding: 1em 5em;
+}
+.post_card:hover .card_call_btn{
+     padding: 1em 8em;
+}
+ 
+.post_card:hover img {
+    transform: scale(1.05);
+}

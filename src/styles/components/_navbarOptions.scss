@@ -1,9 +1,13 @@
 
 
 .options_bar{
+    height: 90vh;
+    width: 5vw;
+}
+.extends_bar{
     position: fixed;
     z-index: 2;
-    min-height: 90vh;
+    height: 90vh;
     width: 5vw;
     background-color: $color-nav-bg;
     border-right: 1px solid $color-nav-border;
@@ -18,8 +22,8 @@
     border-bottom: 1px solid $color-nav-border;
 }
 
-.options_item{
-    
+.options_item .active .options_box_btn {
+    background-color: $color-btncall;
 }
 
 .options_box_btn {
@@ -27,6 +31,7 @@
     align-items: center;
     flex-wrap: nowrap;
     overflow: hidden;
+    cursor: pointer;
     &:hover {
         background-color: $color-navbtn-hover;
     }

@@ -36,7 +36,7 @@ const AppRouter = () => {
                     <Switch>
                         <Route exact path='/' component={HomeScreen} />
                         <Route exact path='/posts/:idPost' component={PostScreen} />
-                        <Route exact path='/search&:query' component={SearchScreen} />
+                        <Route exact path='/search' component={SearchScreen} />
                         <Route exact path='/user/:idUser' component={UserScreen} />
                         {/*  Note: 404 */}
                         <Redirect to='/' />

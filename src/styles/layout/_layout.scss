@@ -4,9 +4,14 @@
 }
 
 .screen {
+    margin-top: 10vh;
     display: flex;
     .scren_content{
-       flex:  1;
-       margin-left: 5vw;
+       
+       flex: 1;
     }
+}
+
+.home_body{
+    padding-left: 3em;
 }
