@@ -57,7 +57,7 @@ const NavBarPpal = () => {
                     </ul>
                     <div className="navbar_user_img">
                         <Link to={`/user/${user.uid}`} >
-                            <img src={user.img_avatar} className='user_img' alt={user.name} />
+                            <img src={user.img} className='user_img' alt={user.name} />
                         </Link>
                     </div>
                 </div>

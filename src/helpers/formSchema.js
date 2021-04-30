@@ -13,7 +13,7 @@ export const schemaPost = yup.object().shape({
     subtitle: yup.string()
         .required('Subtitulo es requerido.')
         .min(2, 'Minimo 2 caracteres')
-        .max(100, 'Maximo 100 caracteres'),
+        .max(150, 'Maximo 150 caracteres'),
     image: yup
         .mixed()
         .nullable()

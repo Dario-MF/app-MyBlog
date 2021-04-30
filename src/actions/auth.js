@@ -11,18 +11,18 @@ export const startRegister = (user) => {
         
         const resp = await fetchNotToken('auth/signup', user, 'POST');
         const body = await resp.json();
-        
+        console.log(body)
         if(resp.ok){
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init', new Date().getTime() );
             
-            const {email, name, surname, uid, img_avatar} = body.user;
+            const {email, name, surname, uid, img} = body.user;
             dispatch( register({
                 email,
                 name,
                 surname,
                 uid,
-                img_avatar
+                img
             }));
             Swal.fire(
                 'Bienvenido!',
@@ -33,7 +33,7 @@ export const startRegister = (user) => {
         } else {
             Swal.fire(
                 'Oops...', 
-                body.errors[0], 
+                body.error.toLocaleString(), 
                 'error'
             );
         }
@@ -50,13 +50,13 @@ export const startLogin = (user) => {
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init', new Date().getTime() );
             
-            const {email, name, surname, uid, img_avatar} = body.user;
+            const {email, name, surname, uid, img} = body.user;
             dispatch( login({
                 email,
                 name,
                 surname,
                 uid,
-                img_avatar
+                img
             }));
             Swal.fire(
                 'Bienvenido!',
@@ -67,7 +67,7 @@ export const startLogin = (user) => {
         } else {
             Swal.fire(
                 'Oops...', 
-                body.msg, 
+                body.error.toLocaleString(), 
                 'error'
             );
         }
@@ -83,13 +83,13 @@ export const startChecking = () => {
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init', new Date().getTime() );
             
-            const {email, name, surname, uid, img_avatar} = body.user;
+            const {email, name, surname, uid, img} = body.user;
             dispatch( login({
                 email,
                 name,
                 surname,
                 uid,
-                img_avatar
+                img
             }));
         } else {
             dispatch({ type: types.authCheckingFinish });

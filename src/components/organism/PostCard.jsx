@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { capitalize } from '../../helpers/capitalize';
 
 const PostCard = ({ post }) => {
-    const { title, subtitle, img, _id } = post;
-
+    const { title, subtitle, img, _id, author } = post;
+    console.log(post)
     return (
         <Link to={`/posts/${_id}`} className="post_card">
             <div>
@@ -14,8 +15,13 @@ const PostCard = ({ post }) => {
                     <h3 className="card_title">{title}</h3>
                     <h4 className="card_subtitle">{subtitle}</h4>
                 </div>
+                <div className="author_comp">
+                    <img src={author.img} className='author_img' alt="author"/>
+                    <p className="author_name">{capitalize(`${author.name} ${author.surname}`)}</p>
+                </div>
+                <p className="post_date"></p>
                 <div className="card_call">
-                    <button className="card_call_btn btn_call">Leer</button>
+                    <button className="card_call_btn btn_call">Leer Post</button>
                 </div>
             </div>
         </Link>

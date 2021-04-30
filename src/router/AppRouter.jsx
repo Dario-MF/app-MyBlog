@@ -32,7 +32,7 @@ const AppRouter = () => {
                 {
                     (logged) && <NavBarOptions />
                 }
-                <div className="scren_content">
+                <div className="screen_content">
                     <Switch>
                         <Route exact path='/' component={HomeScreen} />
                         <Route exact path='/posts/:idPost' component={PostScreen} />
