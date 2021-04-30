@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { capitalize } from '../../helpers/capitalize';
 import { fetchNotToken } from '../../helpers/fetch';
+import { howLong } from '../../helpers/howLongMoment';
 
 
 
-const PostScreen = ({match}) => {
+const PostScreen = ({ match }) => {
 
     const endPoint = `posts/${match.params.idPost}`
 
     const [post, setPost] = useState({
         error: null,
         loading: true,
-        data: null
+        data: null,
+        datePost: null
     });
 
     useEffect(() => {
@@ -21,29 +23,42 @@ const PostScreen = ({match}) => {
                 setPost({
                     error: null,
                     loading: false,
-                    data: resp.data
+                    data: resp.data,
+                    datePost: howLong(resp.data.createdAt)
                 })
             })
             .catch(error => {
-                setPost({
-                    data: null,
+                setPost(p => ({
+                    ...p,
                     loading: false,
                     error
-                })
+                }))
             })
-    }, [endPoint])
+    }, [endPoint]);
+
     console.log(post)
-    
+
     return (
         <div className="post_screen">
-            {  
-                post.data && <div className="post_header">
-                    <img src={post.data.img} alt="post" />
-                    <h1>{post.data.title}</h1>
-                    <h3 className="post_subtitle">{post.data.subtitle}</h3>
-                    <div className="author_comp">
-                        <img src={post.data.author.img} className='author_img' alt="author"/>
-                        <p className="author_name">{capitalize(`${post.data.author.name} ${post.data.author.surname}`)}</p>
+            {
+                post.data &&
+                <div className="post_container">
+                    <div className="post_header_img">
+                        <img src={post.data.img} className="screen_img" alt="post" />
+                    </div>
+                    <div className="post_header">
+                        <div className="author_post_screen">
+                            <img src={post.data.author.img} className='author_img' alt="author" />
+                            <p className="author_name">{capitalize(`${post.data.author.name} ${post.data.author.surname}`)}</p>
+                            <p className="date_post">{post.datePost}</p>
+                        </div>
+                        <div className="titles_box">
+                            <h1 className="post_title">{post.data.title}</h1>
+                            <h3 className="post_subtitle">{post.data.subtitle}</h3>
+                        </div>
+                    </div>
+                    <div className="post_article">
+                        <div dangerouslySetInnerHTML={{ __html: post.data.article }} />
                     </div>
                 </div>
             }

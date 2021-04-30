@@ -6,11 +6,7 @@ import { howLong } from '../../helpers/howLongMoment';
 
 const PostCard = ({ post }) => {
     const { title, subtitle, img, _id, createdAt, author } = post;
-
-
     const textDate = howLong(createdAt);
-    console.log(textDate)
-
 
     return (
         <Link to={`/posts/${_id}`} className="post_card">

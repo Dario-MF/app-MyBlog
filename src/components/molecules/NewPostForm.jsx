@@ -66,7 +66,7 @@ const NewPostForm = () => {
                 <div className='field-box'>
                     <label htmlFor='imageUrl' className="input-file">Image Post</label>
                     <p className="text-input-file">
-                        {(!imageName[0]) ? 'Choose your image...' : imageName[0].name }
+                        {(!imageName[0]) ? 'Choose your image...' : imageName[0].name}
                     </p>
                     <input
                         hidden
@@ -106,7 +106,6 @@ const NewPostForm = () => {
                     >Clean
                     </button>
                 </div>
-                {/*  <div dangerouslySetInnerHTML={{__html: formData.content}} /> */}
             </form>
         </div>
     );
