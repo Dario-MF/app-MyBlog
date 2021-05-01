@@ -47,7 +47,6 @@ export const schemaPostUpdate = yup.object().shape({
     image: yup
         .mixed()
         .test("FILE_SIZE", "Imagen demasiado grande.", (value) => {
-            console.log(value)
             if (!value || !value.length) return true
             return value[0].size <= FILE_SIZE
 

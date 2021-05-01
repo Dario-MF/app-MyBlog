@@ -16,10 +16,5 @@ export const types = {
     authStartRegister: '[auth] START_REGISTER',
     authStartTokenRenew: '[auth] START_TOKEN_RENEW',
     authLogout: '[auth] LOGOUT',
-    //post
-    postTarget: '[post] TARGET_POST',
-    postDestarget: '[post] DESTAGET_POST',
-    // location
-    locationChange: '[location] CHANGE_LOCATION'
 
 };

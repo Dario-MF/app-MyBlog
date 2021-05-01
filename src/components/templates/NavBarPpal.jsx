@@ -36,10 +36,10 @@ const NavBarPpal = () => {
                 <div className="navbar_auth">
                     <ul className="navbar_list">
                         <li className="navbar_item">
-                            <BtnModal text='Login' handleClick={openLoginModal} />          
+                            <BtnModal text='Login' handleClick={openLoginModal} />
                         </li>
                         <li className="navbar_item">
-                            <BtnModal text='Signup' handleClick={openRegisterModal} />            
+                            <BtnModal text='Signup' handleClick={openRegisterModal} />
                         </li>
                     </ul>
                 </div>
@@ -49,14 +49,14 @@ const NavBarPpal = () => {
                 <div className="navbar_auth">
                     <ul className="navbar_list">
                         <li className="navbar_item">
-                            <BtnModal text='New Post' handleClick={openNewPostModal} />  
+                            <BtnModal text='New Post' handleClick={openNewPostModal} />
                         </li>
                         <li className="navbar_item">
                             <BtnModal text='Logout' handleClick={handleClick} />
                         </li>
                     </ul>
                     <div className="navbar_user_img">
-                        <Link to={`/user/${user.uid}`} >
+                        <Link to={`/users/${user.uid}`} >
                             <img src={user.img} className='user_img' alt={user.name} />
                         </Link>
                     </div>

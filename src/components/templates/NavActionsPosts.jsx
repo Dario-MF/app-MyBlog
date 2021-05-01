@@ -4,17 +4,46 @@ import { useHistory } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { userLogout } from '../../actions/auth';
 import { uiOpenNewPostModal } from '../../actions/ui';
+import { fetchNotToken } from '../../helpers/fetch';
 import BtnOptions from '../atoms/BtnOptions';
 import NavOwnerPost from '../molecules/NavOwnerPost';
 
 
-const NavBarOptions = ({ location }) => {
+const NavActions = ({ match }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.auth);
-    const { authorId } = useSelector(state => state.post);
 
+    const [dataLocation, setDataLocation] = useState({
+        data: null,
+    });
 
+    const location = history.location.pathname.split('/')[1];
+
+    const createEndPoint = () => {
+        if (location === 'posts') {
+            return `${location}/${match.params.idPost}`;
+        } else if (location === 'users') {
+            return `${location}/${match.params.idUser}`;
+        }
+        return;
+    };
+    const endPoint = createEndPoint();
+
+    useEffect(() => {
+        if (location === 'posts' || location === 'users') {
+            fetchNotToken(endPoint)
+                .then(resp => resp.json())
+                .then(resp => {
+                    setDataLocation({
+                        data: resp.data
+                    });
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        };
+    }, [location, endPoint]);
 
     const clickNewPost = () => {
         dispatch(uiOpenNewPostModal());
@@ -26,7 +55,12 @@ const NavBarOptions = ({ location }) => {
     const activeNavPosition = () => {
         switch (location) {
             case 'posts':
-                if (authorId === user.uid) {
+                if (user.uid === dataLocation.data.author.uid) {
+                    return <NavOwnerPost postId={match.params.idPost} />
+                }
+                return;
+            case 'users':
+                if (user.uid === match.params.idUser) {
                     return <NavOwnerPost />
                 }
                 return;
@@ -45,7 +79,7 @@ const NavBarOptions = ({ location }) => {
                         </NavLink>
                     </li>
                     <li className="options_item">
-                        <NavLink exact to={`/user/${user.name}_${user.surname}`} >
+                        <NavLink exact to={`/users/${user.uid}`} >
                             <BtnOptions btnType="bi bi-person" textBtn='Perfil' />
                         </NavLink>
                     </li>
@@ -60,7 +94,7 @@ const NavBarOptions = ({ location }) => {
                         <BtnOptions btnType="bi bi-pencil-square" textBtn='New Post' handleClick={clickNewPost} />
                     </li>
                     {
-                        activeNavPosition()
+                        (dataLocation.data) && activeNavPosition()
                     }
                 </ul>
                 <ul className="options_list options_list_actions">
@@ -75,4 +109,4 @@ const NavBarOptions = ({ location }) => {
     );
 };
 
-export default NavBarOptions;
+export default NavActions;

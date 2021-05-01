@@ -13,7 +13,7 @@ import HomeScreen from '../components/pages/HomeScreen';
 import PostScreen from '../components/pages/PostScreen';
 import UserScreen from '../components/pages/UserScreen';
 import SearchScreen from '../components/pages/SearchScreen';
-import NavBarOptions from '../components/templates/NavBarOptions';
+import NavActions from '../components/templates/NavActionsPosts';
 
 
 const AppRouter = () => {
@@ -30,14 +30,20 @@ const AppRouter = () => {
             <NavBarPpal />
             <div className='screen'>
                 {
-                    (logged) && <NavBarOptions />
+                    (logged) &&
+                    <>
+                        <Route path='/posts/:idPost' component={NavActions} />
+                        <Route path='/users/:idUser' component={NavActions} />
+                        <Route path='/search' component={NavActions} />
+                        <Route exact path='/' component={NavActions} />
+                    </>
                 }
                 <div className="screen_content">
                     <Switch>
                         <Route exact path='/' component={HomeScreen} />
                         <Route exact path='/posts/:idPost' component={PostScreen} />
                         <Route exact path='/search' component={SearchScreen} />
-                        <Route exact path='/user/:idUser' component={UserScreen} />
+                        <Route exact path='/users/:idUser' component={UserScreen} />
                         {/*  Note: 404 */}
                         <Redirect to='/' />
                     </Switch>

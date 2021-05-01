@@ -1,7 +1,6 @@
 //import { types } from '../types/types';
 import Swal from 'sweetalert2';
 import { fetchFormData, fetchWithToken } from '../helpers/fetch';
-import { types } from '../types/types';
 import { uiCloseNewPostModal, uiCloseUpdatePostModal } from './ui';
 
 
@@ -87,8 +86,3 @@ export const deletePost = (history, postId) => {
     };
 };
 
-export const targetPostId = (postId, authorId) => ({
-    type: types.postTarget,
-    payload: { postId, authorId }
-});
-export const destargetPost = () => ({ type: types.postDestarget });

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeLocation } from '../../actions/location';
-import { destargetPost, targetPostId } from '../../actions/posts';
+import { useSelector } from 'react-redux';
 import { capitalize } from '../../helpers/capitalize';
 import { fetchNotToken } from '../../helpers/fetch';
 import { howLong } from '../../helpers/howLongMoment';
@@ -11,9 +9,6 @@ import OwnerPostActions from '../molecules/OwnerPostActions';
 
 
 const PostScreen = ({ match }) => {
-    const dispatch = useDispatch();
-    dispatch(changeLocation('posts'));
-
     const endPoint = `posts/${match.params.idPost}`;
     const { user } = useSelector(state => state.auth);
 
@@ -24,6 +19,7 @@ const PostScreen = ({ match }) => {
         datePost: null
     });
 
+
     useEffect(() => {
         fetchNotToken(endPoint)
             .then(resp => resp.json())
@@ -33,7 +29,8 @@ const PostScreen = ({ match }) => {
                     loading: false,
                     data: resp.data,
                     datePost: howLong(resp.data.createdAt)
-                })
+                });
+
             })
             .catch(error => {
                 setPost(p => ({
@@ -42,15 +39,14 @@ const PostScreen = ({ match }) => {
                     error
                 }))
             })
+
     }, [endPoint]);
 
     const ownerOptionsActive = () => {
         if (post.data.author.uid === user.uid) {
-            dispatch(targetPostId(post.data._id, post.data.author.uid));
             return <OwnerPostActions post={post} />
-        } else {
-            dispatch(destargetPost());
         };
+        return;
     };
 
     return (
