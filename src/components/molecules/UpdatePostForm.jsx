@@ -15,16 +15,15 @@ const UpdatePostForm = ({ post }) => {
     const initialValues = {
         title: post.data.title,
         subtitle: post.data.subtitle,
-        img: [],
+        image: [],
         article: post.data.article
     }
 
     const [articleData, setArticleData] = useState({ article: initialValues.article });
+
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schemaPostUpdate)
     });
-
-
 
     const imageName = watch("image", []);
 
@@ -49,9 +48,8 @@ const UpdatePostForm = ({ post }) => {
         formdata.append("subtitle", data.subtitle);
         formdata.append("article", articleData.article);
 
-        if (data.image.length) {
+        if (data.image || data.image.length) {
             formdata.append("archivo", data.image[0]);
-            console.log('update con image', data.image[0]);
         }
         dispatch(updatePost(formdata, history, post.data._id));
     };
@@ -90,6 +88,7 @@ const UpdatePostForm = ({ post }) => {
                     <input
                         hidden
                         type='file'
+                        defaultValue={[]}
                         id='imageUrl'
                         {...register('image')}
                     />

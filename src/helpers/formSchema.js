@@ -47,12 +47,13 @@ export const schemaPostUpdate = yup.object().shape({
     image: yup
         .mixed()
         .test("FILE_SIZE", "Imagen demasiado grande.", (value) => {
-            if (!value.length) return true
+            console.log(value)
+            if (!value || !value.length) return true
             return value[0].size <= FILE_SIZE
 
         })
         .test("FILE_FORMAT", "Formato no soportado (jpeg, png)", (value) => {
-            if (!value.length) return true
+            if (!value || !value.length) return true
             return SUPPORTED_FORMATS.includes(value[0].type)
         }),
 });

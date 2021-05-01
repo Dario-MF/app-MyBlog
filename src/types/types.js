@@ -19,5 +19,7 @@ export const types = {
     //post
     postTarget: '[post] TARGET_POST',
     postDestarget: '[post] DESTAGET_POST',
+    // location
+    locationChange: '[location] CHANGE_LOCATION'
 
 };

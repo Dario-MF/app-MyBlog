@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { changeLocation } from '../../actions/location';
 import { destargetPost, targetPostId } from '../../actions/posts';
 import { capitalize } from '../../helpers/capitalize';
 import { fetchNotToken } from '../../helpers/fetch';
@@ -10,9 +11,10 @@ import OwnerPostActions from '../molecules/OwnerPostActions';
 
 
 const PostScreen = ({ match }) => {
+    const dispatch = useDispatch();
+    dispatch(changeLocation('posts'));
 
     const endPoint = `posts/${match.params.idPost}`;
-    const dispatch = useDispatch();
     const { user } = useSelector(state => state.auth);
 
     const [post, setPost] = useState({
