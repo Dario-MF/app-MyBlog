@@ -34,3 +34,25 @@ export const schemaPost = yup.object().shape({
                     SUPPORTED_FORMATS.includes(value[0].type))
         ),
 });
+
+export const schemaPostUpdate = yup.object().shape({
+    title: yup.string()
+        .required('Titulo es requerido.')
+        .min(2, 'Minimo 2 caracteres')
+        .max(50, 'Maximo 50 caracteres'),
+    subtitle: yup.string()
+        .required('Subtitulo es requerido.')
+        .min(2, 'Minimo 2 caracteres')
+        .max(150, 'Maximo 150 caracteres'),
+    image: yup
+        .mixed()
+        .test("FILE_SIZE", "Imagen demasiado grande.", (value) => {
+            if (!value.length) return true
+            return value[0].size <= FILE_SIZE
+
+        })
+        .test("FILE_FORMAT", "Formato no soportado (jpeg, png)", (value) => {
+            if (!value.length) return true
+            return SUPPORTED_FORMATS.includes(value[0].type)
+        }),
+});

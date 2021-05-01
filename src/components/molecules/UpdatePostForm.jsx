@@ -4,17 +4,27 @@ import { useHistory } from 'react-router';
 import { Editor } from "@tinymce/tinymce-react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaPost } from '../../helpers/formSchema';
-import { createNewPost } from '../../actions/posts';
+import { schemaPostUpdate } from '../../helpers/formSchema';
+import { updatePost } from '../../actions/posts';
 
 
 
 
-const NewPostForm = () => {
-    const [articleData, setArticleData] = useState({ article: '' });
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
-        resolver: yupResolver(schemaPost),
+const UpdatePostForm = ({ post }) => {
+
+    const initialValues = {
+        title: post.data.title,
+        subtitle: post.data.subtitle,
+        img: [],
+        article: post.data.article
+    }
+
+    const [articleData, setArticleData] = useState({ article: initialValues.article });
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm({
+        resolver: yupResolver(schemaPostUpdate)
     });
+
+
 
     const imageName = watch("image", []);
 
@@ -24,11 +34,10 @@ const NewPostForm = () => {
         })
     };
 
-    const clearForm = (e) => {
+    const initialForm = (e) => {
         e.preventDefault();
-        setArticleData({
-            article: '',
-        });
+        setArticleData({ article: initialValues.article });
+        reset();
     };
 
     const history = useHistory();
@@ -39,9 +48,12 @@ const NewPostForm = () => {
         formdata.append("title", data.title);
         formdata.append("subtitle", data.subtitle);
         formdata.append("article", articleData.article);
-        formdata.append("archivo", data.image[0]);
 
-        dispatch(createNewPost(formdata, history));
+        if (data.image.length) {
+            formdata.append("archivo", data.image[0]);
+            console.log('update con image', data.image[0]);
+        }
+        dispatch(updatePost(formdata, history, post.data._id));
     };
 
     return (
@@ -54,6 +66,7 @@ const NewPostForm = () => {
                     <input
                         className="form-input "
                         type='text'
+                        defaultValue={initialValues.title}
                         placeholder='Title'
                         {...register("title")}
                     />
@@ -63,6 +76,7 @@ const NewPostForm = () => {
                     <input
                         className="form-input "
                         type='text'
+                        defaultValue={initialValues.subtitle}
                         placeholder='Subtitle'
                         {...register("subtitle")}
                     />
@@ -102,13 +116,13 @@ const NewPostForm = () => {
                     <button
                         className="button btn_call"
                         id="save-button"
-                    >Save
+                    >Edit
                     </button>
                     <button
                         className="button btn_call"
                         id="clear-button"
-                        onClick={clearForm}
-                    >Clean
+                        onClick={initialForm}
+                    >Reset
                     </button>
                 </div>
             </form>
@@ -116,4 +130,4 @@ const NewPostForm = () => {
     );
 };
 
-export default NewPostForm;
+export default UpdatePostForm;

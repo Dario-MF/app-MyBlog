@@ -7,11 +7,10 @@ import { uiOpenNewPostModal } from '../../actions/ui';
 import BtnOptions from '../atoms/BtnOptions';
 
 
-const NavBarOptions = () => {
+const NavBarOptions = (params) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.auth);
-
 
     const clickNewPost = () => {
         dispatch(uiOpenNewPostModal());
@@ -44,10 +43,13 @@ const NavBarOptions = () => {
                     <li className="options_item">
                         <BtnOptions btnType="bi bi-pencil-square" textBtn='New Post' handleClick={clickNewPost} />
                     </li>
+                </ul>
+                <ul className="options_list options_list_actions">
                     <li className="options_item">
                         <BtnOptions btnType="bi bi-box-arrow-left" textBtn='Logout' handleClick={clickLogout} />
                     </li>
                 </ul>
+
             </div>
 
         </div>

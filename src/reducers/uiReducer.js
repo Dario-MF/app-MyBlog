@@ -3,7 +3,8 @@ import { types } from "../types/types";
 const initialState = {
     modalRegisterOpen: false,
     modalLoginOpen: false,
-    modalNewPostOpen: false
+    modalNewPostOpen: false,
+    modalUpdatePostOpen: false
 }
 
 export const uiReducer = (state = initialState, action) => {
@@ -38,6 +39,16 @@ export const uiReducer = (state = initialState, action) => {
             return {
                 ...state,
                 modalNewPostOpen: false
+            };
+        case types.uiOpenModalUpdatePost:
+            return {
+                ...state,
+                modalUpdatePostOpen: true
+            };
+        case types.uiCloseModalUpdatePost:
+            return {
+                ...state,
+                modalUpdatePostOpen: false
             };
         default:
             return state;

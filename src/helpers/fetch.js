@@ -47,29 +47,14 @@ export const fetchFormData = (endpoint, data, method = 'POST') => {
 
     const token = localStorage.getItem('token') || '';
 
-    const formdata = new FormData();
-    formdata.append("title", data.title);
-    formdata.append("subtitle", data.subtitle);
-    formdata.append("article", data.article);
-    formdata.append("archivo", data.image[0]);
-
-    if (method === 'GET') {
-        return fetch(url, {
-            method,
-            headers: {
-                "Authorization": token
-            }
-        });
-    } else {
-        return fetch(url, {
-            method,
-            headers: {
-                "Authorization": token
-            },
-            body: formdata,
-            redirect: 'follow'
-        });
-    };
+    return fetch(url, {
+        method,
+        headers: {
+            "Authorization": token
+        },
+        body: data,
+        redirect: 'follow'
+    });
 };
 
 
