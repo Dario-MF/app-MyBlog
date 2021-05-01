@@ -9,26 +9,28 @@ const PostCard = ({ post }) => {
     const textDate = howLong(createdAt);
 
     return (
-        <Link to={`/posts/${_id}`} className="post_card">
-            <div>
-                <div className="card_img_box">
-                    <img className="card_img" src={img} alt="post" />
-                </div>
-                <div className="card_header">
-                    <h3 className="card_title">{title}</h3>
-                    <h4 className="card_subtitle">{subtitle}</h4>
-                </div>
-                <div className="author_comp">
-                    <img src={author.img} className='author_img' alt="author" />
-                    <p className="author_name">{capitalize(`${author.name} ${author.surname}`)}</p>
-                    <p className="date_post">{textDate}</p>
-                </div>
-                <p className="post_date"></p>
-                <div className="card_call">
-                    <button className="card_call_btn btn_call">Leer Post</button>
-                </div>
+        <div className="post_card">
+            <div className="card_img_box">
+                <img className="card_img" src={img} alt="post" />
             </div>
-        </Link>
+            <div className="card_header">
+                <h3 className="card_title">{title}</h3>
+                <h4 className="card_subtitle">{subtitle}</h4>
+            </div>
+            <div className="author_comp">
+                <img src={author.img} className='author_img' alt="author" />
+                <Link to={`/users/${author.uid}`} >
+                    <p className="author_name">{capitalize(`${author.name} ${author.surname}`)}</p>
+                </Link>
+                <p className="date_post">{textDate}</p>
+            </div>
+            <p className="post_date"></p>
+            <div className="card_call">
+                <Link to={`/posts/${_id}`} >
+                    <button className="card_call_btn btn_call">Leer Post</button>
+                </Link>
+            </div>
+        </div>
     );
 };
 

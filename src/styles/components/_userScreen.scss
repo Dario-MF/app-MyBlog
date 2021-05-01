@@ -1,0 +1,68 @@
+
+.user_header {
+    &::before {
+        background-image: url('../../assets/fondo-user.jpg');
+    }
+    .box_header{
+        position: fixed;
+        background-color: $color-nav-bg;
+        width: 20vw;
+        height: fit-content;
+        top: 35%;
+        left: 10%;
+        border-radius: 5px;  
+    }  
+}
+
+.box_user_header {
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 2em;
+    .user_card_box{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .user_img {
+            width: 10em;
+            height: 10em;
+        }
+        .user_name{
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    }
+}
+
+.user_social_urls { 
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    .bi {
+        cursor: pointer;
+        color: $color-text-light;
+        margin: 0 .4em;
+        font-size: 1.5em;
+        transition: all .3s;
+    }
+    .bi-github:hover{
+        color: rgb(0, 0, 0);
+    }
+    .bi-facebook:hover{
+        color: rgb(43, 51, 161);
+    }
+    .bi-twitter:hover{
+        color: rgb(90, 164, 207);
+    }
+    .bi-linkedin:hover{
+        color: rgb(38, 62, 197);
+    }
+}
+
+.user_posts{
+    margin-left: 30vw;
+}

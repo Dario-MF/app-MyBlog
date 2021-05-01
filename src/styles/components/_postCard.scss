@@ -19,7 +19,6 @@
     overflow: hidden;
     position: relative;
     margin-bottom: 3em;
-    cursor: pointer;
     display: inline-block;
 }
  
@@ -36,9 +35,9 @@
 .post_card .card_title {
     margin: 0;
     position: absolute;
-    top: 50%;
+    bottom: 35%;
     left: 3%;
-    font-size: 25px;
+    font-size: 1.5em;
     font-weight: bold;
     color: #FFF;
     padding: 15px 20px;
@@ -49,7 +48,8 @@
     margin: 0;
     position: absolute;
     color: rgba(255, 255, 255, 0.8);
-    top: 70%;
+    font-size: 1em;
+    bottom: 30%;
     left: 40px;
     transition: all 0.15s linear;
 }
@@ -69,9 +69,17 @@
         border-radius: 50%;
         margin-right: 1em;
     }
-    .author_name{
+    a {
         flex: 1;
+    }
+    .author_name{
+        color: $color-text-light; 
         font-size: .9em;
+        transition: all 0.1s linear;
+    }
+    .author_name:hover{
+        color: $color-btncall;
+        font-weight: bold;
     }
     .date_post {
         font-size: .9em;
