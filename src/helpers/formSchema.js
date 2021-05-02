@@ -56,3 +56,51 @@ export const schemaPostUpdate = yup.object().shape({
             return SUPPORTED_FORMATS.includes(value[0].type)
         }),
 });
+
+
+export const schemaUserUpdate = yup.object().shape({
+    name: yup.string()
+        .required('Nombre es requerido.')
+        .min(2, 'Minimo 2 caracteres')
+        .max(50, 'Maximo 50 caracteres'),
+    surname: yup.string()
+        .required('Apellido es requerido.')
+        .min(2, 'Minimo 2 caracteres')
+        .max(150, 'Maximo 150 caracteres'),
+    email: yup.string()
+        .email()
+        .required('Email es requerido.')
+        .min(2, 'Minimo 2 caracteres')
+        .max(150, 'Maximo 100 caracteres'),
+    // urls social media
+    githubUrl: yup.string()
+        .url('No es una url valida'),
+    facebookUrl: yup.string()
+        .url('No es una url valida'),
+    twitterUrl: yup.string()
+        .url('No es una url valida'),
+    linkedinUrl: yup.string()
+        .url('No es una url valida'),
+    //passwords
+    oldPassword: yup.string()
+        .test("PASS_EMPTY", 'Password: min 8 caracteres, 1 numero', (value) => {
+            if (!value || !value.length) return true
+            return value.match(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/)
+        }),
+    newPassword: yup.string()
+        .test("PASS_EMPTY", 'Password: min 8 caracteres, 1 numero', (value) => {
+            if (!value || !value.length) return true
+            return value.match(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/)
+        }),
+    // img usuario.
+    image: yup
+        .mixed()
+        .test("FILE_SIZE", "Imagen demasiado grande.", (value) => {
+            if (!value || !value.length) return true
+            return value[0].size <= FILE_SIZE
+        })
+        .test("FILE_FORMAT", "Formato no soportado (jpeg, png)", (value) => {
+            if (!value || !value.length) return true
+            return SUPPORTED_FORMATS.includes(value[0].type)
+        }),
+});

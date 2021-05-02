@@ -1,4 +1,8 @@
 
+.user_screen {
+    width: 100%;
+}
+
 .user_header {
     &::before {
         background-image: url('../../assets/fondo-user.jpg');
@@ -9,7 +13,7 @@
         width: 20vw;
         height: fit-content;
         top: 35%;
-        left: 10%;
+        left: 8%;
         border-radius: 5px;  
     }  
 }
@@ -64,5 +68,22 @@
 }
 
 .user_posts{
-    margin-left: 30vw;
+    padding-left: 30vw;
 }
+
+.btn_edit_user {
+        width: 9em;
+        padding: .5em 0;
+        margin-right: 1em;
+        margin-top: 2em;
+        border: 2px solid $color-btncall;
+        border-radius: 5px;
+        font-weight: bold;
+        color: $color-text-light;
+        background-color: transparent;
+        transition: all .3s;
+        cursor: pointer;
+        &:hover{
+            background-color: $color-btncall;
+        }
+    }

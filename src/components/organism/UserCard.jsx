@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { capitalize } from '../../helpers/capitalize';
 import UserSocial from '../molecules/UserSocial';
 
@@ -12,6 +13,12 @@ const UserCard = ({ author }) => {
                 <img src={capitalize(`${author.img}`)} className='user_img' alt={author.name} />
                 <p className="user_name">{capitalize(`${author.name} ${author.surname}`)}</p>
                 <UserSocial user={author} />
+                {
+                    (user.uid === author.uid) &&
+                    <Link to='/edit-user' >
+                        <button className='btn_edit_user'>Editar Perfil</button>
+                    </Link>
+                }
             </div>
 
         </div>

@@ -1,0 +1,105 @@
+
+
+.edit_screen {
+    width: 100%;
+}
+
+.container_form_edit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5em;
+    //background-color: rgba(238, 130, 238, 0.226);
+}
+.edit_user_form {
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.edit_img_field {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4em;
+
+    .img_box_field {
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        width: 12em;
+        height: 12em;
+        img {
+            border-radius: 50%;
+            width: 12em;
+            height: 12em;
+            &:hover {
+                transform: scale(1.08);
+                transition: all .3s ease-in-out;
+            }
+        }
+        .input_file_user {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; 
+            height: 25%;
+            background-color: rgba(29, 29, 29, 0.603);
+
+            i {
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+.edit_user_field {
+    width: 48%;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    //background-color: rgba(255, 255, 0, 0.247);
+    
+    &:nth-child(4) {
+        width: 100%;
+    }
+    .label_field {
+        padding-left: .3em;
+        i {
+            margin-right: .5em;
+        }
+       
+    }
+
+    input {
+        border: 0;
+        border-radius: 10px;
+        background-color: $color-nav-bg;
+        padding: 1em 0 1em 1em;
+        margin-top: .5em;
+        font-size: 1em;
+        color: $color-text-light;
+        outline: none;
+         &:focus{
+            border-color:  #004e92;
+        }
+        &::placeholder {
+            color: rgba(139, 139, 139, 0.87);
+            transition: all 0.3s ease;
+        }
+        &:focus::placeholder{
+            color: #b3b3b3;
+        }
+    }
+
+    .alert_password {
+        font-size: .8em;
+    }
+}
+
+.btn-box .delete{
+    background-color: $color-important;
+}

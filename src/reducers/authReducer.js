@@ -8,7 +8,8 @@ const initialState = {
         email: null,
         img_avatar: null
     },
-    logged: false
+    logged: false,
+    checking: true
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -16,23 +17,25 @@ export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.authStartRegister:
             return {
-                ...state,
                 user: action.payload,
-                logged: true
+                logged: true,
+                checking: false
             };
         case types.authLogin:
             return {
-                ...state,
                 user: action.payload,
-                logged: true
+                logged: true,
+                checking: false
             };
         case types.authCheckingFinish:
             return {
-                ...initialState
+                ...initialState,
+                checking: false
             };
         case types.authLogout:
             return {
-                ...initialState
+                ...initialState,
+                checking: false
             };
         default:
             return state;
