@@ -52,9 +52,14 @@
         border-radius: 50%;
     }
     .author_name {
+        color: $color-text-light;
         margin: 0;
         padding-top: 1em;
         font-size: 1.2em;
+        transition: all .3s;
+        &:hover {
+            color: $color-btncall;
+        }
     }
     .date_post {
         margin: 0;

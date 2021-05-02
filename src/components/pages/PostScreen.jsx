@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { capitalize } from '../../helpers/capitalize';
 import { fetchNotToken } from '../../helpers/fetch';
 import { howLong } from '../../helpers/howLongMoment';
@@ -60,7 +61,9 @@ const PostScreen = ({ match }) => {
                     <div className="post_header">
                         <div className="author_post_screen">
                             <img src={post.data.author.img} className='author_img' alt="author" />
-                            <p className="author_name">{capitalize(`${post.data.author.name} ${post.data.author.surname}`)}</p>
+                            <Link to={`/users/${post.data.author.uid}`} >
+                                <p className="author_name">{capitalize(`${post.data.author.name} ${post.data.author.surname}`)}</p>
+                            </Link>
                             <p className="date_post">{post.datePost}</p>
                             {
                                 ownerOptionsActive()

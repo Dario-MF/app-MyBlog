@@ -27,7 +27,7 @@ const PostCard = ({ post }) => {
             <p className="post_date"></p>
             <div className="card_call">
                 <Link to={`/posts/${_id}`} >
-                    <button className="card_call_btn btn_call">Leer Post</button>
+                    <button className="card_call_btn btn_call">Leer</button>
                 </Link>
             </div>
         </div>

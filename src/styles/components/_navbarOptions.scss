@@ -3,7 +3,7 @@
 .options_bar{
     flex-shrink: 0;
     height: 90vh;
-    width: 5vw;
+    width: calc(10vh);
 }
 .extends_bar{
     position: fixed;
