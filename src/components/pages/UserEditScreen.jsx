@@ -1,29 +1,53 @@
 
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaUserUpdate } from '../../helpers/formSchema';
 import { capitalize } from '../../helpers/capitalize';
-import { updateUser } from '../../actions/auth';
+import { updateUser, updateUserImg } from '../../actions/auth';
+
+
 
 const UserEditScreen = () => {
     const { user } = useSelector(state => state.auth);
+    const history = useHistory();
+    const dispatch = useDispatch();
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm({
         resolver: yupResolver(schemaUserUpdate)
     });
 
-    const history = useHistory();
-    const dispatch = useDispatch();
+    const imageFile = watch("image", []);
+
+    const [{ alt, src }, setImg] = useState({
+        src: user.img,
+        alt: 'Upload an Image'
+    });
+
+    useEffect(() => {
+        if (imageFile.length) {
+            setImg({
+                src: URL.createObjectURL(imageFile[0]),
+                alt: imageFile[0].name
+            });
+        };
+    }, [imageFile]);
+
+
 
     const initialForm = (e) => {
         e.preventDefault();
         reset();
+        setImg({
+            src: user.img,
+            alt: 'Upload an Image'
+        });
     };
 
     const saveUser = (data) => {
-        const formdata = {
+        const formData = {
             name: data.name,
             surname: data.surname,
             email: data.email,
@@ -36,9 +60,13 @@ const UserEditScreen = () => {
         };
 
         if (data.image || data.image.length) {
-            //formdata.append("archivo", data.image[0]);
+            console.log(data.image)
+            const formDataImg = new FormData();
+            formDataImg.append("archivo", data.image[0]);
+
+            dispatch(updateUserImg(formDataImg, history, user.uid));
         }
-        dispatch(updateUser(formdata, history, user.uid));
+        dispatch(updateUser(formData, history, user.uid));
     };
 
     return (
@@ -47,16 +75,17 @@ const UserEditScreen = () => {
                 <form className="edit_user_form" onSubmit={handleSubmit(saveUser)}>
                     <div className='edit_img_field'>
                         <div className="img_box_field">
-                            <img src={user.img} alt="user" />
+                            <img src={src} alt={alt} />
                             <label htmlFor='imageUrl' className="input_file_user"><i className="bi bi-camera"></i></label>
                         </div>
                         <input
                             hidden
                             type='file'
-                            defaultValue={[]}
                             id='imageUrl'
+                            defaultValue={[]}
                             {...register('image')}
                         />
+                        {errors.image && <p className="error">{errors.image.message}</p>}
                     </div>
                     <div className="edit_user_field">
                         <label className='label_field'>Nombre</label>

@@ -2,6 +2,7 @@ import * as yup from 'yup';
 
 
 const FILE_SIZE = "500000";
+const FILE_SIZE_AVATAR = "5000"
 const SUPPORTED_FORMATS = ["image/jpeg", "image/png"];
 
 
@@ -97,7 +98,7 @@ export const schemaUserUpdate = yup.object().shape({
         .mixed()
         .test("FILE_SIZE", "Imagen demasiado grande.", (value) => {
             if (!value || !value.length) return true
-            return value[0].size <= FILE_SIZE
+            return value[0].size <= FILE_SIZE_AVATAR
         })
         .test("FILE_FORMAT", "Formato no soportado (jpeg, png)", (value) => {
             if (!value || !value.length) return true

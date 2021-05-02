@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import { capitalize } from '../helpers/capitalize';
-import { fetchNotToken, fetchWithToken } from '../helpers/fetch';
+import { fetchFormData, fetchNotToken, fetchWithToken } from '../helpers/fetch';
 import { types } from '../types/types';
 import { uiCloseLoginModal, uiCloseRegisterModal } from './ui';
 
@@ -83,14 +83,7 @@ export const startChecking = () => {
             localStorage.setItem('token', body.token);
             localStorage.setItem('token-init', new Date().getTime());
 
-            const { email, name, surname, uid, img } = body.user;
-            dispatch(login({
-                email,
-                name,
-                surname,
-                uid,
-                img
-            }));
+            dispatch(login(body.user));
         } else {
             dispatch({ type: types.authCheckingFinish });
         };
@@ -123,7 +116,7 @@ export const updateUser = (data, history, userId) => {
     return async (dispatch) => {
         const resp = await fetchWithToken(`users/${userId}`, data, 'PUT');
         const body = await resp.json();
-        console.log(body);
+
         if (resp.ok) {
             Swal.fire(
                 `${body.msg}`,
@@ -138,6 +131,19 @@ export const updateUser = (data, history, userId) => {
                 body.error.toLocaleString(),
                 'error'
             );
+        };
+    };
+};
+export const updateUserImg = (data, history, userId) => {
+    return async (dispatch) => {
+        const resp = await fetchFormData(`uploads/users/${userId}`, data, 'PUT');
+        const body = await resp.json();
+
+        if (resp.ok) {
+            dispatch(register(body.data));
+            history.push(`/users/${userId}`);
+        } else {
+            console.log(body.error)
         };
     };
 };

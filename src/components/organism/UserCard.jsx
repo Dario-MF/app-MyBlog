@@ -10,7 +10,7 @@ const UserCard = ({ author }) => {
     return (
         <div className="box_header box_user_header">
             <div className="user_card_box">
-                <img src={capitalize(`${author.img}`)} className='user_img' alt={author.name} />
+                <img src={author.img} className='user_img' alt={author.name} />
                 <p className="user_name">{capitalize(`${author.name} ${author.surname}`)}</p>
                 <UserSocial user={author} />
                 {

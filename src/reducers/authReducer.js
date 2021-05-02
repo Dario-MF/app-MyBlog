@@ -6,7 +6,11 @@ const initialState = {
         name: null,
         surname: null,
         email: null,
-        img_avatar: null
+        img_avatar: null,
+        facebookUrl: null,
+        twitterUrl: null,
+        githubUrl: null,
+        linkedinUrl: null
     },
     logged: false,
     checking: true
