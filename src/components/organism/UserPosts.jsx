@@ -4,10 +4,10 @@ import PostCard from './PostCard';
 const UserPosts = ({ posts }) => {
     return (
         <div className="posts_container user_posts">
-            <h2 className="body_title">
-                Ultimos posts
-            </h2>
             <div className="posts_cards">
+                <h2 className=" result_text">
+                    Ultimos posts
+                </h2>
                 {
                     posts.map(post => (
                         <PostCard

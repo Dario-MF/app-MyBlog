@@ -41,7 +41,7 @@
             transition: all .3s ease;
             &:hover {
                 width: 110%;
-            }
+            } 
         }
         .input_file_user {
             cursor: pointer;
@@ -90,11 +90,11 @@
         font-size: 1em;
         color: $color-text-light;
         outline: none;
-         &:focus{
-            border-color:  #004e92;
+        &:focus{
+            background-color: rgb(63, 69, 78);
         }
         &::placeholder {
-            color: rgba(139, 139, 139, 0.87);
+            color: rgb(139, 139, 139);
             transition: all 0.3s ease;
         }
         &:focus::placeholder{

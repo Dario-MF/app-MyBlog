@@ -1,8 +1,6 @@
 import React from 'react';
 
 
-
-
 const UserSocial = ({ user }) => {
 
     const SearchUrlgitHub = () => {

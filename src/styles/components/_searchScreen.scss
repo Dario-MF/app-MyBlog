@@ -1,0 +1,82 @@
+
+.search_screen {
+    width: 100%;
+}
+
+.search_header {
+    &::before {
+        background-image: url('../../assets/pcBanner4.jpg');
+    }
+    .box_header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+
+//form search
+
+.container_form_search {
+    height: 6em;
+    margin-bottom: 1.5em;
+    
+}
+.edit_user_form .search_field {
+    width: 100%;
+    height: fit-content;
+    flex-direction: row;
+    position: relative;
+    
+
+    input {
+        flex: 1;
+    }
+    .btn_search {
+        border: 0;
+        color: $color-text-light;
+        background-color: $color-btncall;
+        border-radius: 10px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        padding: 1em 2em;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transition: all .3s ease;
+        &:hover {
+            background-color: $color-btncall-hover;
+        }
+
+        i {
+            font-size: 1.5em;
+        }
+    }
+}
+
+// cards.
+
+.result_text {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 3em;
+    font-size: 1.5em;
+}
+
+.container_posts_search {
+    width: 100%;
+    padding: 5em;
+    margin: 0;
+}
+

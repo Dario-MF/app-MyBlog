@@ -31,10 +31,10 @@ const PostsContainer = () => {
 
     return (
         <div className="posts_container">
-            <h2 className="body_title">
-                Posts de la comunidad
-            </h2>
             <div className="posts_cards">
+                <h2 className="posts_title result_text">
+                    Posts de la comunidad
+                </h2>
                 {
                     posts.data && posts.data.map(post => (
                         <PostCard
