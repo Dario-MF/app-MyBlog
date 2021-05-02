@@ -13,9 +13,16 @@
     border-bottom: 1px solid $color-nav-border;
     color: $color-text-light;
 }
-.brand{
-    color: $color-text-light;
+
+.img_logo {
+    background-image: url('../../assets/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 3em;
+    width: 13em;
 }
+
 .navbar_auth{
     display: flex;
     height: 100%;

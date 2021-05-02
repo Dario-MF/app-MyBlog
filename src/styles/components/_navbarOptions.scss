@@ -52,6 +52,7 @@
     height: calc(5vw);
 }
 .text_btn {
+    flex-shrink: 0;
     color: $color-text-light;
     display: inline-block;
     margin: 0;

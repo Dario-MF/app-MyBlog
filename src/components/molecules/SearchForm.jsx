@@ -10,7 +10,6 @@ const SearchForm = ({ setPostsSearch }) => {
 
     const onSubmit = (data) => {
         searchPosts(data.search);
-        console.log(data)
     };
 
     const searchPosts = (query) => {
@@ -51,7 +50,7 @@ const SearchForm = ({ setPostsSearch }) => {
                         placeholder="Search.."
                         {...register('search')}
                     />
-                    <button className="btn_search" type="submit"><i class="bi bi-search"></i></button>
+                    <button className="btn_search" type="submit"><i className="bi bi-search"></i></button>
                 </div>
             </form>
         </div>

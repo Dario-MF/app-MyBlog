@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { deletePost } from '../../actions/posts';
 import { uiOpenUpdatePostModal } from '../../actions/ui';
-//import UpdatePostModal from '../organism/UpdatePostModal';
 import BtnOptions from '../atoms/BtnOptions';
 
 
@@ -22,10 +21,10 @@ const NavOwnerPost = ({ postId }) => {
     return (
         <>
             <li className="options_item">
-                <BtnOptions btnType="bi bi-pencil" textBtn='Edit' handleClick={clickUpdatePost} />
+                <BtnOptions btnType="bi bi-pencil" textBtn='Edit Post' handleClick={clickUpdatePost} />
             </li>
             <li className="options_item">
-                <BtnOptions btnType="bi bi-trash" textBtn='Delete' handleClick={clickDeletePost} />
+                <BtnOptions btnType="bi bi-trash" textBtn='Delete Post' handleClick={clickDeletePost} />
             </li>
         </>
     );

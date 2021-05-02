@@ -7,6 +7,7 @@ import { uiOpenNewPostModal } from '../../actions/ui';
 import { fetchNotToken } from '../../helpers/fetch';
 import BtnOptions from '../atoms/BtnOptions';
 import NavOwnerPost from '../molecules/NavOwnerPost';
+import NavOwnerUser from '../molecules/NavOwnerUser';
 
 
 const NavActions = ({ match }) => {
@@ -53,6 +54,7 @@ const NavActions = ({ match }) => {
     };
 
     const activeNavPosition = () => {
+        console.log(location)
         switch (location) {
             case 'posts':
                 if (user.uid === dataLocation.data.author.uid) {
@@ -61,9 +63,12 @@ const NavActions = ({ match }) => {
                 return;
             case 'users':
                 if (user.uid === match.params.idUser) {
-                    return <NavOwnerPost />
+                    return <NavOwnerUser />
                 }
                 return;
+            case 'edit-user':
+                return <NavOwnerUser />
+
             default:
                 return;
         };
@@ -95,6 +100,9 @@ const NavActions = ({ match }) => {
                     </li>
                     {
                         (dataLocation.data) && activeNavPosition()
+                    }
+                    {
+                        (location === 'edit-user') && activeNavPosition()
                     }
                 </ul>
                 <ul className="options_list options_list_actions">

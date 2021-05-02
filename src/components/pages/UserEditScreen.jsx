@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaUserUpdate } from '../../helpers/formSchema';
 import { capitalize } from '../../helpers/capitalize';
-import { updateUser, updateUserImg } from '../../actions/auth';
+import { deleteUser, updateUser, updateUserImg } from '../../actions/auth';
 
 
 
@@ -26,6 +26,7 @@ const UserEditScreen = () => {
         alt: 'Upload an Image'
     });
 
+    // Efecto para previsualizar img user.
     useEffect(() => {
         if (imageFile.length) {
             setImg({
@@ -35,8 +36,6 @@ const UserEditScreen = () => {
         };
     }, [imageFile]);
 
-
-
     const initialForm = (e) => {
         e.preventDefault();
         reset();
@@ -44,6 +43,11 @@ const UserEditScreen = () => {
             src: user.img,
             alt: 'Upload an Image'
         });
+    };
+
+    const clickDeleteUser = (e) => {
+        e.preventDefault();
+        dispatch(deleteUser(history, user.uid));
     };
 
     const saveUser = (data) => {
@@ -58,9 +62,7 @@ const UserEditScreen = () => {
             newPassword: data.newPassword,
             oldPassword: data.oldPassword
         };
-
-        if (data.image || data.image.length) {
-            console.log(data.image)
+        if (data.image.length > 0) {
             const formDataImg = new FormData();
             formDataImg.append("archivo", data.image[0]);
 
@@ -193,7 +195,7 @@ const UserEditScreen = () => {
                         <button
                             className="button btn_call delete"
                             id="delete-button"
-                            onClick={initialForm}
+                            onClick={clickDeleteUser}
                         >Delete User
                         </button>
                     </div>

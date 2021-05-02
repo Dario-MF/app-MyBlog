@@ -134,6 +134,8 @@ export const updateUser = (data, history, userId) => {
         };
     };
 };
+
+
 export const updateUserImg = (data, history, userId) => {
     return async (dispatch) => {
         const resp = await fetchFormData(`uploads/users/${userId}`, data, 'PUT');
@@ -145,6 +147,48 @@ export const updateUserImg = (data, history, userId) => {
         } else {
             console.log(body.error)
         };
+    };
+};
+
+
+export const deleteUser = (history, userId) => {
+    return async (dispatch) => {
+        Swal.fire({
+            title: '¿Desea Eliminar el Usuario?',
+            showDenyButton: true,
+            confirmButtonText: `Yes`,
+            denyButtonText: `No`
+
+        }).then(async (result) => {
+
+            if (result.isConfirmed) {
+                const resp = await fetchWithToken(`users/${userId}`, {}, 'DELETE');
+                const body = await resp.json();
+
+                if (resp.ok) {
+                    Swal.fire(
+                        'Usuario Eliminado!',
+                        body.msg,
+                        'success'
+                    );
+                    // Clean storage, state, redirect to home.
+                    localStorage.clear('token');
+                    localStorage.clear('token-init');
+
+                    dispatch({ type: types.authLogout });
+                    history.push("/");
+                } else {
+                    Swal.fire(
+                        'Oops...',
+                        body.error.toLocaleString(),
+                        'error'
+                    );
+                };
+            } else if (result.isDenied) {
+                return
+            };
+        });
+
     };
 };
 

@@ -29,7 +29,7 @@ const NavBarPpal = () => {
     return (
         <div className='navbar_ppal'>
             <Link to='/' >
-                <p className='brand'>Logo</p>
+                <div className='img_logo'></div>
             </Link>
             {
                 (!logged) &&
