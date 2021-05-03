@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 
 const FILE_SIZE = "500000";
-const FILE_SIZE_AVATAR = "5000"
+const FILE_SIZE_AVATAR = "500000"
 const SUPPORTED_FORMATS = ["image/jpeg", "image/png"];
 
 

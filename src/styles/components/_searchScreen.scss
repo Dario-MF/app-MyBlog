@@ -4,6 +4,7 @@
 }
 
 .search_header {
+    margin: 0;
     &::before {
         background-image: url('../../assets/pcBanner4.jpg');
     }
@@ -27,8 +28,8 @@
 //form search
 
 .container_form_search {
-    height: 6em;
-    margin-bottom: 1.5em;
+    height: 3em;
+    padding: 5em;
     
 }
 .edit_user_form .search_field {
