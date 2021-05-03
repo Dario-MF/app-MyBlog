@@ -2,6 +2,9 @@
 
 - Blog con registro de usuarios, posts publicos para compartir en comunidad,
     postea o busca posts por palabra.
+
+### Url web MyBlog
+-   https://api-backend-myblog.herokuapp.com/
     
 ##Screenshots
 
