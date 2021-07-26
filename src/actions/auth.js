@@ -16,17 +16,19 @@ export const startRegister = (user) => {
             localStorage.setItem('token', body.token);
             localStorage.setItem('token-init', new Date().getTime());
 
-            const { email, name, surname, uid, img } = body.user;
-            dispatch(register({
-                email,
-                name,
-                surname,
-                uid,
-                img
-            }));
+            const { email, name, surname, uid, img, verify } = body.user;
+            if(verify) {
+                dispatch(register({
+                    email,
+                    name,
+                    surname,
+                    uid,
+                    img
+                }));
+            }
             Swal.fire(
                 'Bienvenido!',
-                `${capitalize(`${name} ${surname}`)}, ya formas parte de MyBlog!`,
+                `${capitalize(`${name} ${surname}`)}, ya formas parte de MyBlog!\n Confirme email para terminar registro`,
                 'success'
             );
             dispatch(uiCloseRegisterModal())
@@ -47,22 +49,36 @@ export const startLogin = (user) => {
         const body = await resp.json();
 
         if (resp.ok) {
-            localStorage.setItem('token', body.token);
-            localStorage.setItem('token-init', new Date().getTime());
+            const { email, name, surname, uid, img, verify } = body.user;
+            if(verify) {
+                localStorage.setItem('token', body.token);
+                localStorage.setItem('token-init', new Date().getTime());
 
-            const { email, name, surname, uid, img } = body.user;
-            dispatch(login({
-                email,
-                name,
-                surname,
-                uid,
-                img
-            }));
-            Swal.fire(
-                'Bienvenido!',
-                capitalize(`${name} ${surname}`),
-                'success'
-            );
+                dispatch(login({
+                    email,
+                    name,
+                    surname,
+                    uid,
+                    img
+                }));
+
+                Swal.fire(
+                    'Bienvenido!',
+                    capitalize(`${name} ${surname}`),
+                    'success'
+                );
+            } else {
+                const sendMailValidation = () => {
+                        //fetch a api
+                };
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text:'Para acceder es necesario validar su correo!!',
+                    footer: '<span style="color: indigo; cursor:pointer">Reenviar email de validación?</span>'
+                });
+            }
+            
             dispatch(uiCloseLoginModal());
         } else {
             Swal.fire(
