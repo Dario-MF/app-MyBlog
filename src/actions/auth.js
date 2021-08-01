@@ -17,7 +17,7 @@ export const startRegister = (user) => {
             localStorage.setItem('token-init', new Date().getTime());
 
             const { email, name, surname, uid, img, verify } = body.user;
-            if(verify) {
+            if (verify) {
                 dispatch(register({
                     email,
                     name,
@@ -50,7 +50,7 @@ export const startLogin = (user) => {
 
         if (resp.ok) {
             const { email, name, surname, uid, img, verify } = body.user;
-            if(verify) {
+            if (verify) {
                 localStorage.setItem('token', body.token);
                 localStorage.setItem('token-init', new Date().getTime());
 
@@ -68,17 +68,31 @@ export const startLogin = (user) => {
                     'success'
                 );
             } else {
-                const sendMailValidation = () => {
-                        //fetch a api
+                const sendMailValidation = async (email) => {
+                    const endpoint = `users/resend_email/${uid}`;
+                    const resp = await fetchNotToken(endpoint);
+                    if (resp.ok) {
+                        Swal.fire('Email enviado!', '', 'success');
+                        console.log('email enviado', email);
+                    } else {
+                        Swal.fire('Error al enviar email', '', 'error');
+                    }
                 };
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text:'Para acceder es necesario validar su correo!!',
-                    footer: '<span style="color: indigo; cursor:pointer">Reenviar email de validación?</span>'
+                    icon: 'warning',
+                    title: 'Para acceder es necesario validar su correo!!',
+                    text: 'Reenviar email de validación?',
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: `Enviar`,
+                    denyButtonText: `Cancelar`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        sendMailValidation(email);
+                    }
                 });
             }
-            
+
             dispatch(uiCloseLoginModal());
         } else {
             Swal.fire(
